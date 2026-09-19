@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Crop Lamps</title>
+</head>
+<body>
+  <script>
+    async function crop() {
+      const img = new Image();
+      img.src = '/images/hanging_lamp.png';
+      await new Promise(r => img.onload = r);
+
+      // 1. Large lamp: x from 40 to 330 (center top ring around 188)
+      // We want the top ring to be at exactly 50% width of the cropped image
+      // Top ring in original image is at x ≈ 195, y ≈ 80
+      // If crop width is 300, centered at x = 195: xMin = 195 - 150 = 45, xMax = 345
+      const c1 = document.createElement('canvas');
+      c1.width = 300;
+      c1.height = 560;
+      const ctx1 = c1.getContext('2d');
+      ctx1.drawImage(img, 45, 0, 300, 560, 0, 0, 300, 560);
+
+      // 2. Small lamp: top ring in original is at x ≈ 465, y ≈ 50
+      // If crop width is 200, centered at x = 465: xMin = 465 - 100 = 365, xMax = 565
+      const c2 = document.createElement('canvas');
+      c2.width = 200;
+      c2.height = 420;
+      const ctx2 = c2.getContext('2d');
+      ctx2.drawImage(img, 365, 0, 200, 420, 0, 0, 200, 420);
+
+      window.lampLargeData = c1.toDataURL('image/png');
+      window.lampSmallData = c2.toDataURL('image/png');
+      console.log('CROPPED_DONE');
+    }
+    crop();
+  </script>
+</body>
+</html>

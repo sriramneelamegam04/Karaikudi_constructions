@@ -1,0 +1,171 @@
+/* =======================================================
+   HORIZONTAL PROJECT SCROLL (UPGRADED STYLES)
+   Full-bleed architectural imagery, refined typography,
+   rotating title lane, and progress tracking
+   ======================================================= */
+
+.hys-section {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #2a2320;
+  color: #f5efe4;
+  box-sizing: border-box;
+}
+
+.hys-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+.hys-panel {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hys-img-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hys-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(20, 15, 12, 0.94) 0%,
+    rgba(20, 15, 12, 0.76) 28%,
+    rgba(20, 15, 12, 0.22) 60%,
+    rgba(20, 15, 12, 0.35) 100%
+  );
+}
+
+/* Large rotating project name */
+.hys-display {
+  pointer-events: none;
+  position: absolute;
+  z-index: 20;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: var(--font-serif, "Cormorant Garamond", Georgia, serif);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #faf7f2;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+  will-change: transform;
+  text-wrap: balance;
+}
+
+/* Written editorial project detail */
+.hys-details {
+  position: absolute;
+  bottom: 42vh;
+  right: 18vw;
+  z-index: 20;
+  width: min(38ch, 44vw);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .hys-details {
+    bottom: 9vh;
+    right: 15vw;
+  }
+}
+
+.hys-location {
+  margin: 0;
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(0.72rem, 0.85vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e0c9a6;
+}
+
+.hys-title {
+  margin: 0.6rem 0 0 0;
+  font-family: var(--font-serif, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1.35rem, 2.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #faf7f2;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hys-body {
+  margin: 0.85rem 0 0 0;
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(0.88rem, 1vw, 1.02rem);
+  line-height: 1.65;
+  color: rgba(245, 239, 228, 0.82);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hys-specs {
+  margin: 1.25rem 0 0 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(0.75rem, 0.9vw, 0.92rem);
+  color: rgba(245, 239, 228, 0.88);
+}
+
+.hys-spec-item {
+  position: relative;
+}
+
+.hys-spec-item:not(:first-child) {
+  padding-left: 1.25rem;
+  border-left: 1px solid rgba(245, 239, 228, 0.28);
+}
+
+/* Thin pinned progress bar */
+.hys-progress-track {
+  pointer-events: none;
+  position: absolute;
+  bottom: 4vh;
+  left: 6vw;
+  right: 5vw;
+  z-index: 30;
+  height: 2px;
+  background-color: rgba(245, 239, 228, 0.2);
+}
+
+.hys-progress-bar {
+  height: 100%;
+  transform-origin: left;
+  background-color: #e0c9a6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hys-section {
+    height: auto;
+  }
+  .hys-track {
+    display: block;
+  }
+  .hys-panel {
+    width: 100%;
+    height: 100svh;
+  }
+}

@@ -1,0 +1,202 @@
+/* =======================================================
+   FRAMER-INSPIRED EDITORIAL STATS COMPONENT
+   Architecture & Heritage Statistics
+======================================================= */
+
+.framer-stats-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: clamp(2rem, 3.5vh, 3.25rem);
+  padding-bottom: 0.75rem;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.framer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  gap: 0;
+  border-top: 1px solid rgba(40, 18, 25, 0.1);
+  padding-top: clamp(1.75rem, 2.5vh, 2.5rem);
+}
+
+.framer-stat-col {
+  border-left: 1px solid rgba(40, 18, 25, 0.12);
+  padding: 0 clamp(1.25rem, 2vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.framer-stat-col.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.framer-stat-number-wrap {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy-text, #281219);
+  margin-bottom: 0.6rem;
+  font-variant-numeric: lining-nums tabular-nums;
+  display: flex;
+  align-items: baseline;
+  min-height: 1.1em;
+}
+
+.framer-stat-suffix {
+  color: #8c2a41;
+  margin-left: 0.08em;
+  font-weight: 600;
+}
+
+.framer-stat-title {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-burgundy-text, #281219);
+  margin-bottom: 0.35rem;
+}
+
+.framer-stat-desc {
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(0.8rem, 0.88vw, 0.9rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(40, 18, 25, 0.72);
+  margin: 0;
+  max-width: 240px;
+}
+
+/* =======================================================
+   RESPONSIVE BREAKPOINTS
+======================================================= */
+
+/* TABLET (769px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .framer-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+  }
+
+  .framer-stat-col:nth-child(2n + 1) {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .framer-stat-desc {
+    max-width: 320px;
+  }
+}
+
+/* MOBILE (<= 768px) & SMALL MOBILE */
+@media (max-width: 768px) {
+  .framer-stats-container {
+    padding-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    padding-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .framer-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: clamp(0.75rem, 1.6vh, 1.25rem);
+    column-gap: clamp(0.6rem, 2vw, 1.15rem);
+    padding-top: clamp(0.75rem, 1.4vh, 1.25rem);
+    border-top: 1px solid rgba(40, 18, 25, 0.1);
+  }
+
+  .framer-stat-col {
+    border-left: none;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .framer-stat-col:nth-child(2n) {
+    border-left: 1px solid rgba(40, 18, 25, 0.1);
+    padding-left: clamp(0.5rem, 1.8vw, 0.85rem);
+  }
+
+  .framer-stat-number-wrap {
+    font-size: clamp(1.65rem, 5.5vw, 2.25rem);
+    margin-bottom: 0.2rem;
+  }
+
+  .framer-stat-title {
+    font-size: clamp(0.78rem, 2.4vw, 0.95rem);
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+  }
+
+  .framer-stat-desc {
+    font-size: clamp(0.68rem, 2vw, 0.78rem);
+    max-width: none;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+}
+
+/* SMALL MOBILE (<= 479px) */
+@media (max-width: 479px) {
+  .framer-stats-container {
+    padding-top: 0.6rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .framer-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0.75rem;
+    column-gap: 0.6rem;
+    padding-top: 0.65rem;
+  }
+
+  .framer-stat-col {
+    padding: 0;
+  }
+
+  .framer-stat-col:nth-child(2n) {
+    border-left: 1px solid rgba(40, 18, 25, 0.08);
+    padding-left: 0.5rem;
+  }
+
+  .framer-stat-number-wrap {
+    font-size: clamp(1.5rem, 5.2vw, 1.85rem);
+    margin-bottom: 0.15rem;
+  }
+
+  .framer-stat-title {
+    font-size: 0.78rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .framer-stat-desc {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .framer-stat-col {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

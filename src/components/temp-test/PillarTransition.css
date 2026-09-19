@@ -1,0 +1,83 @@
+/*
+  PillarTransition.css
+  ---------------------
+  Light, ivory-toned backdrop for the pillar-image scroll transition.
+  Background colors are CSS custom properties so they can be swapped to
+  match Vaayil's Chettinad palette if a warmer tone is wanted.
+*/
+
+.pillar-transition {
+  --pt-bg-top: #faf6ec;
+  --pt-bg-bottom: #efe6d2;
+
+  position: relative;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--pt-bg-bottom);
+  isolation: isolate;
+}
+
+.pillar-transition__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--pt-bg-top) 0%, var(--pt-bg-bottom) 100%);
+  z-index: 0;
+}
+
+.pillar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: clamp(160px, 20vw, 380px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 18px 24px rgba(60, 45, 20, 0.22));
+}
+
+.pillar-image {
+  width: 100%;
+  height: auto;
+  max-height: 92vh;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Right pillar reuses the same source image, mirrored, so the pair reads
+   as a matched set rather than two identical copies facing one way. Drop
+   this rule if your source image is already symmetric enough to skip it. */
+.pillar-image--mirrored {
+  transform: scaleX(-1);
+}
+
+/* Reduced motion: static framing, pillars already resting near the
+   corners (matching the JS fallback state), section no longer pinned
+   so it just occupies a normal block of vertical space. */
+@media (prefers-reduced-motion: reduce) {
+  .pillar-transition {
+    height: auto;
+    padding: 3rem 0 4rem;
+  }
+
+  .pillar-image {
+    max-height: 46vh;
+  }
+}
+
+/* Small screens: keep pillars from crowding the very edges, and shrink
+   the corner travel distance so they don't clip off-canvas. Adjust the
+   CORNER_OFFSET value in the JS in tandem with this if you change it. */
+@media (max-width: 640px) {
+  .pillar {
+    width: clamp(110px, 30vw, 200px);
+  }
+
+  .pillar-image {
+    max-height: 62vh;
+  }
+}

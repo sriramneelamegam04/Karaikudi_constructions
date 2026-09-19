@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Process Lamp</title>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <script>
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    // We will load the image and remove the pure white background
+    img.onload = () => {
+      const c = document.getElementById('c');
+      c.width = img.width;
+      c.height = img.height;
+      const ctx = c.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const idata = ctx.getImageData(0, 0, c.width, c.height);
+      const d = idata.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i], g = d[i+1], b = d[i+2];
+        if (r > 245 && g > 245 && b > 245) {
+          d[i+3] = 0; // Transparent
+        } else if (r > 225 && g > 225 && b > 225) {
+          const diff = Math.min(255 - r, 255 - g, 255 - b);
+          d[i+3] = Math.min(255, Math.floor(diff * (255 / 30)));
+        }
+      }
+      ctx.putImageData(idata, 0, 0);
+      window.processedDataUrl = c.toDataURL('image/png');
+      console.log('PROCESSED_READY');
+    };
+    img.src = 'lamp_raw.png';
+  </script>
+</body>
+</html>

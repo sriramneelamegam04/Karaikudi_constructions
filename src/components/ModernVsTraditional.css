@@ -1,0 +1,662 @@
+/* =======================================================
+   MODERN VS TRADITIONAL — AUTOMATIC ARCHITECTURAL REVEAL CAROUSEL
+   Cinematic Before/After reveal with 5-second automatic progression
+   ======================================================= */
+
+.mvt-section {
+  position: relative;
+  width: 100%;
+  background-color: #FAF7F2;
+  color: var(--color-burgundy-text, #281219);
+  padding: 7.5rem 5vw 8rem 5vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-top: 1px solid rgba(40, 18, 25, 0.08);
+  border-bottom: 1px solid rgba(40, 18, 25, 0.08);
+}
+
+/* Background subtle ambient warmth */
+.mvt-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(245, 237, 224, 0.6) 0%, rgba(250, 247, 242, 0.98) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mvt-container {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =======================================================
+   1. SECTION EDITORIAL HEADER
+   ======================================================= */
+.mvt-header {
+  text-align: center;
+  max-width: 860px;
+  width: 100%;
+  margin-bottom: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mvt-badge-wrap {
+  margin-bottom: 1rem;
+}
+
+.mvt-badge {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #3B1622;
+  background: rgba(59, 22, 34, 0.05);
+  border: 1px solid rgba(59, 22, 34, 0.14);
+  padding: 0.38rem 1.2rem;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: inline-block;
+}
+
+.mvt-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: #281219;
+  margin: 0 0 0.85rem 0;
+}
+
+.mvt-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: #6A2437;
+}
+
+.mvt-subtitle {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: rgba(40, 18, 25, 0.72);
+  margin: 0;
+  max-width: 680px;
+  font-weight: 400;
+}
+
+/* =======================================================
+   2. MAIN AUTOMATIC REVEAL COMPARISON FRAME
+   ======================================================= */
+.mvt-reveal-stage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 2.25rem auto;
+}
+
+.mvt-reveal-frame {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(40, 18, 25, 0.18),
+              0 6px 18px -4px rgba(40, 18, 25, 0.08);
+  border: 1px solid rgba(40, 18, 25, 0.12);
+  background-color: #1a0a10;
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 0 auto;
+}
+
+/* Base Image (Modern Architecture) */
+.mvt-layer-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Reveal Image Layer (Traditional Chettinad Architecture) */
+.mvt-layer-reveal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.mvt-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1.002);
+  will-change: transform, opacity;
+}
+
+/* Architectural gradient overlay for crisp text contrast */
+.mvt-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 8, 12, 0.32) 0%,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(20, 8, 12, 0.82) 100%
+  );
+  pointer-events: none;
+}
+
+/* Top Corner Brand Labels */
+.mvt-corner-label {
+  position: absolute;
+  top: 1.25rem;
+  z-index: 4;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.05rem;
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mvt-corner-modern {
+  left: 1.25rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: #281219;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.mvt-corner-traditional {
+  right: 1.25rem;
+  background: rgba(40, 18, 25, 0.92);
+  color: #FAF7F2;
+  border: 1px solid rgba(250, 247, 242, 0.3);
+}
+
+/* Floating Information Panels on Image */
+.mvt-info-panel {
+  position: absolute;
+  bottom: 1.35rem;
+  z-index: 4;
+  max-width: 350px;
+  padding: 1.15rem 1.4rem;
+  border-radius: 16px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-sizing: border-box;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+/* Modern floating card (Bottom Left) */
+.mvt-panel-modern {
+  left: 1.35rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  color: #281219;
+}
+
+/* Traditional floating card (Bottom Right) */
+.mvt-panel-traditional {
+  right: 1.35rem;
+  background: linear-gradient(
+    145deg,
+    rgba(40, 18, 25, 0.92) 0%,
+    rgba(26, 9, 15, 0.95) 100%
+  );
+  border: 1px solid rgba(250, 247, 242, 0.22);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  color: #FAF7F2;
+}
+
+.mvt-panel-category {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.mvt-panel-modern .mvt-panel-category {
+  color: #6A2437;
+}
+
+.mvt-panel-traditional .mvt-panel-category {
+  color: #e8c89b;
+}
+
+.mvt-panel-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.28rem;
+  font-weight: 500;
+  line-height: 1.18;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.01em;
+}
+
+.mvt-panel-modern .mvt-panel-title {
+  color: #281219;
+}
+
+.mvt-panel-traditional .mvt-panel-title {
+  color: #FAF7F2;
+}
+
+.mvt-panel-desc {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.mvt-panel-modern .mvt-panel-desc {
+  color: rgba(40, 18, 25, 0.82);
+}
+
+.mvt-panel-traditional .mvt-panel-desc {
+  color: rgba(250, 247, 242, 0.85);
+}
+
+/* =======================================================
+   3. DYNAMIC REVEAL DIVIDER & HANDLE
+   ======================================================= */
+.mvt-divider-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+  will-change: left;
+}
+
+.mvt-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #FAF7F2;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.45),
+              0 0 8px rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%);
+}
+
+.mvt-drag-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #FAF7F2;
+  border: 2px solid rgba(40, 18, 25, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28),
+              0 0 0 5px rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #281219;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mvt-knob-arrows {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.mvt-knob-divider {
+  width: 1.5px;
+  height: 12px;
+  background: rgba(40, 18, 25, 0.35);
+  margin: 0 2px;
+}
+
+/* =======================================================
+   4. STEP TABS & 5-SECOND PROGRESS BARS
+   ======================================================= */
+.mvt-tabs-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.mvt-step-tab {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(40, 18, 25, 0.08);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mvt-step-tab:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(40, 18, 25, 0.18);
+  transform: translateY(-2px);
+}
+
+.mvt-step-tab.is-active {
+  background: #ffffff;
+  border-color: rgba(147, 56, 82, 0.3);
+  box-shadow: 0 10px 30px -8px rgba(40, 18, 25, 0.08);
+}
+
+/* 5-SECOND ACTIVE PROGRESS BAR */
+.mvt-tab-progress-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: rgba(40, 18, 25, 0.06);
+}
+
+.mvt-tab-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #281219 0%, #7A1C36 100%);
+  border-radius: 999px;
+  transition: width 0.05s linear;
+}
+
+.mvt-tab-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.2rem;
+}
+
+.mvt-tab-number {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(40, 18, 25, 0.4);
+  transition: color 0.3s ease;
+}
+
+.mvt-step-tab.is-active .mvt-tab-number {
+  color: #7A1C36;
+}
+
+.mvt-tab-status {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(40, 18, 25, 0.4);
+}
+
+.mvt-step-tab.is-active .mvt-tab-status {
+  color: #7A1C36;
+}
+
+.mvt-tab-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #281219;
+  margin: 0;
+}
+
+.mvt-tab-summary {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: rgba(40, 18, 25, 0.65);
+  margin: 0;
+}
+
+/* =======================================================
+   RESPONSIVE: TABLET (769px to 1024px)
+   ======================================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mvt-section {
+    padding: 6rem 4vw 6.5rem 4vw;
+  }
+
+  .mvt-reveal-stage {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .mvt-reveal-frame {
+    height: 380px;
+    border-radius: 20px;
+  }
+
+  .mvt-info-panel {
+    max-width: 300px;
+    padding: 1rem 1.2rem;
+    bottom: 1.1rem;
+  }
+
+  .mvt-panel-modern {
+    left: 1.1rem;
+  }
+
+  .mvt-panel-traditional {
+    right: 1.1rem;
+  }
+
+  .mvt-panel-title {
+    font-size: 1.18rem;
+  }
+
+  .mvt-panel-desc {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .mvt-tabs-container {
+    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .mvt-step-tab {
+    padding: 1rem 1.15rem;
+  }
+}
+
+/* =======================================================
+   RESPONSIVE: MOBILE (<= 768px)
+   ======================================================= */
+@media (max-width: 768px) {
+  .mvt-section {
+    padding: 4.5rem 1.25rem 5rem 1.25rem;
+  }
+
+  .mvt-header {
+    margin-bottom: 2rem;
+  }
+
+  .mvt-title {
+    font-size: 2rem;
+  }
+
+  .mvt-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .mvt-reveal-stage {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .mvt-reveal-frame {
+    height: 360px;
+    border-radius: 16px;
+  }
+
+  .mvt-corner-label {
+    top: 0.75rem;
+    font-size: clamp(0.55rem, 1.8vw, 0.62rem);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .mvt-corner-modern {
+    left: 0.65rem;
+  }
+
+  .mvt-corner-traditional {
+    right: 0.65rem;
+  }
+
+  /* Compact comparison cards for mobile — TITLE ONLY */
+  .mvt-info-panel {
+    width: calc(50% - 1.1rem);
+    max-width: calc(50% - 1.1rem);
+    padding: 0.55rem 0.65rem;
+    border-radius: 10px;
+    bottom: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .mvt-panel-modern {
+    left: 0.65rem;
+    right: auto;
+  }
+
+  .mvt-panel-traditional {
+    right: 0.65rem;
+    left: auto;
+  }
+
+  /* Hide category subtitle and description text inside comparison cards on mobile */
+  .mvt-panel-category,
+  .mvt-panel-desc {
+    display: none !important;
+  }
+
+  .mvt-panel-title {
+    font-size: clamp(0.72rem, 2.4vw, 0.88rem);
+    line-height: 1.22;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .mvt-drag-knob {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mvt-tabs-container {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .mvt-step-tab {
+    padding: 0.85rem 1rem;
+  }
+
+  .mvt-tab-title {
+    font-size: 1.02rem;
+  }
+
+  .mvt-tab-summary {
+    font-size: 0.72rem;
+  }
+}
+
+/* =======================================================
+   RESPONSIVE: EXTRA SMALL MOBILE (<= 375px)
+   ======================================================= */
+@media (max-width: 375px) {
+  .mvt-corner-label {
+    top: 0.55rem;
+    font-size: 0.52rem;
+    padding: 0.2rem 0.45rem;
+    letter-spacing: 0.05em;
+  }
+
+  .mvt-corner-modern {
+    left: 0.5rem;
+  }
+
+  .mvt-corner-traditional {
+    right: 0.5rem;
+  }
+
+  .mvt-info-panel {
+    width: calc(50% - 0.85rem);
+    max-width: calc(50% - 0.85rem);
+    padding: 0.45rem 0.5rem;
+    bottom: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .mvt-panel-modern {
+    left: 0.5rem;
+  }
+
+  .mvt-panel-traditional {
+    right: 0.5rem;
+  }
+
+  .mvt-panel-title {
+    font-size: 0.72rem;
+    line-height: 1.15;
+  }
+}
+
+/* =======================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ======================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .mvt-img,
+  .mvt-info-panel,
+  .mvt-step-tab,
+  .mvt-tab-progress-bar {
+    transition-duration: 0.001s !important;
+  }
+}

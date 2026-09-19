@@ -1,0 +1,185 @@
+/* =======================================================
+   CHETTINAD MANSION CLOUD VIDEO SECTION
+   Cinematic Full-Width Prominent Video Feature
+======================================================= */
+
+.mansion-cloud-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 680px;
+  max-height: 1100px;
+  background-color: var(--color-cream-bg, #FAF7F2);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  border: none;
+}
+
+.mansion-video-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mansion-single-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Seamless Continuous Blend: Clean top blend from Testimonials, crystal clear video, subtle feather at bottom edge */
+.mansion-video-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #FAF7F2 0%,
+    rgba(250, 247, 242, 0.92) 5%,
+    rgba(250, 247, 242, 0.5) 14%,
+    rgba(250, 247, 242, 0) 28%,
+    rgba(250, 247, 242, 0) 93%,
+    rgba(250, 247, 242, 0.45) 97%,
+    #FAF7F2 100%
+  );
+  pointer-events: none;
+}
+
+/* Editorial Minimal Caption Overlay */
+.mansion-caption-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 4rem 6vw 4.5rem 6vw;
+  box-sizing: border-box;
+  color: #FAF7F2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mansion-caption-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FAF7F2;
+  background: rgba(40, 18, 25, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 247, 242, 0.2);
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  margin-bottom: 0.9rem;
+}
+
+.mansion-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8c2a41;
+}
+
+.mansion-caption-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: #FAF7F2;
+  margin: 0 0 0.6rem 0;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+.mansion-caption-subtitle {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: clamp(0.92rem, 1.15vw, 1.12rem);
+  line-height: 1.55;
+  color: rgba(250, 247, 242, 0.88);
+  margin: 0;
+  max-width: 620px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .mansion-cloud-section {
+    height: 85vh;
+    min-height: 560px;
+  }
+
+  .mansion-caption-overlay {
+    padding: 3rem 5vw 3.5rem 5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .mansion-cloud-section {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    display: block;
+  }
+
+  .mansion-video-wrap {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .mansion-single-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .mansion-video-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      #FAF7F2 0%,
+      rgba(250, 247, 242, 0.7) 4%,
+      rgba(250, 247, 242, 0) 12%,
+      rgba(250, 247, 242, 0) 88%,
+      rgba(250, 247, 242, 0.6) 96%,
+      #FAF7F2 100%
+    );
+  }
+
+  .mansion-caption-overlay {
+    padding: 2.25rem 5vw 2.5rem 5vw;
+  }
+
+  .mansion-caption-title {
+    font-size: 1.95rem;
+  }
+
+  .mansion-caption-subtitle {
+    font-size: 0.86rem;
+  }
+}

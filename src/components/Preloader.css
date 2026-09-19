@@ -1,0 +1,227 @@
+/* =======================================================
+   ANIMATA SPLIT REVEAL PRELOADER
+   Chettinad Architecture Luxury Shutter Reveal
+======================================================= */
+
+.preloader-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* =======================================================
+   SPLIT SHUTTERS (TOP & BOTTOM)
+======================================================= */
+.preloader-shutter {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: #0c0b0a;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(40, 18, 25, 0.45) 0%, rgba(12, 11, 10, 0.98) 75%),
+    linear-gradient(to bottom, #110d0f, #090807);
+  box-sizing: border-box;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.95s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.preloader-shutter-top {
+  top: 0;
+  border-bottom: 1px solid rgba(250, 247, 242, 0.08);
+}
+
+.preloader-shutter-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(250, 247, 242, 0.08);
+}
+
+/* SPLIT ACTIVE STATES */
+.preloader-root.is-splitting .preloader-shutter-top {
+  transform: translate3d(0, -100%, 0);
+}
+
+.preloader-root.is-splitting .preloader-shutter-bottom {
+  transform: translate3d(0, 100%, 0);
+}
+
+/* =======================================================
+   CENTER STAGE (BRAND, PROGRESS & EDITORIAL TAGLINE)
+======================================================= */
+.preloader-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  max-width: 480px;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.preloader-content.is-fading {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* Central Circular Brand Mark */
+.preloader-logo-wrapper {
+  position: relative;
+  width: clamp(88px, 12vw, 110px);
+  height: clamp(88px, 12vw, 110px);
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-circular-text-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: preloaderCircularSpin 20s linear infinite;
+}
+
+@keyframes preloaderCircularSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader-circular-text {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  fill: #faf7f2;
+  opacity: 0.88;
+  text-transform: uppercase;
+}
+
+.preloader-logo-center {
+  width: 46%;
+  height: 46%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 18, 25, 0.4);
+  border: 1px solid rgba(250, 247, 242, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 4px;
+}
+
+.preloader-logo-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  filter: brightness(1.08) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Tagline */
+.preloader-tagline {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: clamp(0.75rem, 1vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #faf7f2;
+  opacity: 0.72;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* Minimal Line Progress Runner */
+.preloader-bar-track {
+  width: 160px;
+  height: 2px;
+  background: rgba(250, 247, 242, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  position: relative;
+}
+
+.preloader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #c5a059, #faf7f2);
+  border-radius: 9999px;
+  transition: width 0.15s ease-out;
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+/* Progress Numerical Counter */
+.preloader-counter {
+  font-family: var(--font-serif, 'Cinzel', serif);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: #faf7f2;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader-counter span {
+  opacity: 0.4;
+  margin: 0 0.35rem;
+}
+
+/* =======================================================
+   RESPONSIVE STYLING
+======================================================= */
+@media (max-width: 768px) {
+  .preloader-logo-wrapper {
+    margin-bottom: 1.35rem;
+  }
+
+  .preloader-tagline {
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .preloader-bar-track {
+    width: 130px;
+  }
+}
+
+/* =======================================================
+   REDUCED MOTION ACCESSIBILITY
+======================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .preloader-shutter {
+    transition: opacity 0.3s ease !important;
+  }
+
+  .preloader-root.is-splitting .preloader-shutter-top,
+  .preloader-root.is-splitting .preloader-shutter-bottom {
+    transform: none !important;
+    opacity: 0 !important;
+  }
+
+  .preloader-circular-text-svg {
+    animation: none !important;
+  }
+}
